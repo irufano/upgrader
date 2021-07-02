@@ -68,6 +68,7 @@ class UpgradeAlert extends UpgradeBase {
         builder: (BuildContext context, AsyncSnapshot<bool> processed) {
           if (processed.connectionState == ConnectionState.done) {
             Upgrader().checkVersion(context: context);
+            state.forceUpdateState();
           }
           return child!;
         });
