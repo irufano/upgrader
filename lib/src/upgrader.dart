@@ -107,6 +107,8 @@ class Upgrader {
   /// The upgrade dialog style. Optional. Used only on UpgradeAlert. (default: material)
   UpgradeDialogStyle? dialogStyle = UpgradeDialogStyle.material;
 
+  Function(bool)? isDialogShow;
+
   bool _displayed = false;
   bool _initCalled = false;
   PackageInfo? _packageInfo;
@@ -291,6 +293,7 @@ class Upgrader {
   void checkVersion({required BuildContext context}) {
     if (!_displayed) {
       final shouldDisplay = shouldDisplayUpgrade();
+      isDialogShow!(shouldDisplay);
       if (debugLogging) {
         print('upgrader: shouldDisplayUpgrade: $shouldDisplay');
         print(

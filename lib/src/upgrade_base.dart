@@ -68,6 +68,9 @@ class UpgradeBase extends StatefulWidget {
   /// The upgrade dialog style. Optional. Used only on UpgradeAlert. (default: material)
   final UpgradeDialogStyle? dialogStyle;
 
+  // Callback is dialog open or not
+  final Function(bool)? isDialogShow;
+
   UpgradeBase({
     Key? key,
     this.appcastConfig,
@@ -88,6 +91,7 @@ class UpgradeBase extends StatefulWidget {
     this.countryCode,
     this.minAppVersion,
     this.dialogStyle = UpgradeDialogStyle.material,
+    this.isDialogShow,
   }) : super(key: key) {
     if (appcastConfig != null) {
       Upgrader().appcastConfig = appcastConfig;
@@ -142,6 +146,9 @@ class UpgradeBase extends StatefulWidget {
     }
     if (dialogStyle != null) {
       Upgrader().dialogStyle = dialogStyle;
+    }
+    if (isDialogShow != null) {
+      Upgrader().isDialogShow = isDialogShow;
     }
   }
 
